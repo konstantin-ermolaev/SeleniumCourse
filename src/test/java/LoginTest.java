@@ -8,9 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
-public class FirstTest {
+public class LoginTest {
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -22,11 +21,19 @@ public class FirstTest {
 
     @Test
     public void firstTest() {
-        driver.get("http://google.com");
-        driver.findElement(By.id("L2AGLb")).click();
-        driver.findElement(By.name("q")).sendKeys("webdriver");
-        driver.findElement(By.name("btnG")).click();
-        wait.until(titleIs("webdriver - Поиск в Google"));
+
+        By fldLogin = By.name("username");
+        By fldPass = By.name("password");
+        By chkbxRememberMe = By.name("remember_me");
+        By btnSubmit = By.name("login");
+
+        driver.get("http://localhost/litecart/admin");
+        driver.findElement(fldLogin).clear();
+        driver.findElement(fldLogin).sendKeys("anyUser");
+        driver.findElement(fldPass).clear();
+        driver.findElement(fldPass).sendKeys("anyPass");
+        driver.findElement(chkbxRememberMe).click();
+        driver.findElement(btnSubmit).click();
     }
 
     @After
